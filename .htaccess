@@ -1,0 +1,24 @@
+Options -Indexes
+RewriteEngine On
+
+# Set the base directory
+RewriteBase /jobportal/
+
+# Handle requests to non-existent files or directories
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+
+# Allow direct access to PHP files
+RewriteCond %{REQUEST_URI} !\.(php|css|js|png|jpg|jpeg|gif)$
+
+# Ensure proper directory access
+<IfModule mod_headers.c>
+    Header set Access-Control-Allow-Origin "*"
+</IfModule>
+
+# PHP error handling
+php_flag display_errors on
+php_value error_reporting E_ALL
+
+# Prevent directory listing
+IndexIgnore * 

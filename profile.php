@@ -1,0 +1,13 @@
+<?php
+session_start();
+
+// Check if user is logged in
+if (!isset($_SESSION['user_id'])) {
+    header("Location: login.php");
+    exit();
+}
+
+// Redirect to the actual profile page in the user directory
+header("Location: user/profile.php");
+exit();
+?> 
